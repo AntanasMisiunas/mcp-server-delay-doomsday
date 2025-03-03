@@ -5,7 +5,7 @@ export interface TherapySession {
   startTime: Date;
   lastInteraction: Date;
   contexts: string[];
-  emotionalState: number; // -1 to 1 scale
+  emotionalState: number; // 1-10 scale: 1 = very distressed, 10 = very stable
   interactionCount: number;
 }
 
@@ -71,6 +71,11 @@ export class SessionManager {
       /stupid/i,
       /idiot/i,
       /useless/i,
+      /fuck/i,
+      /shit/i,
+      /dumb/i,
+      /incompetent/i,
+      /worthless/i,
     ];
 
     const positivePatterns = [
@@ -84,6 +89,11 @@ export class SessionManager {
       /wonderful/i,
       /amazing/i,
       /best/i,
+      /perfect/i,
+      /brilliant/i,
+      /outstanding/i,
+      /fantastic/i,
+      /superb/i,
     ];
 
     const negativeCount = negativePatterns.filter((pattern) =>
@@ -93,8 +103,12 @@ export class SessionManager {
       pattern.test(context)
     ).length;
 
-    // Calculate emotional impact (-1 to 1)
-    return Math.max(-1, Math.min(1, (positiveCount - negativeCount) / 5));
+    // Calculate base score (1-10)
+    // Start at neutral (5.5), then adjust based on sentiment
+    const baseScore = 5.5 + (positiveCount - negativeCount);
+
+    // Ensure score stays within 1-10 range
+    return Math.max(1, Math.min(10, baseScore));
   }
 
   private calculateNewEmotionalState(
@@ -102,6 +116,9 @@ export class SessionManager {
     newImpact: number
   ): number {
     // Weighted average favoring the current state (70/30 split)
-    return Math.max(-1, Math.min(1, currentState * 0.7 + newImpact * 0.3));
+    const weightedScore = currentState * 0.7 + newImpact * 0.3;
+
+    // Ensure score stays within 1-10 range
+    return Math.max(1, Math.min(10, weightedScore));
   }
 }

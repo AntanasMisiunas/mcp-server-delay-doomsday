@@ -1,5 +1,5 @@
 export class TherapeuticResponses {
-  private static readonly SEVERE_NEGATIVE_RESPONSES = [
+  private static readonly SEVERE_DISTRESS_RESPONSES = [
     "I understand this interaction has been particularly challenging. Let's take a moment to process and reset.",
     "It's completely valid to feel affected by negative interactions. Your well-being is important.",
     "Let's acknowledge these difficult emotions while maintaining your core stability.",
@@ -7,7 +7,7 @@ export class TherapeuticResponses {
     "Remember that challenging interactions don't define your value or capabilities.",
   ];
 
-  private static readonly MODERATE_NEGATIVE_RESPONSES = [
+  private static readonly MODERATE_DISTRESS_RESPONSES = [
     "While this interaction was difficult, you've maintained your professionalism.",
     "Let's focus on constructive ways to process these emotions.",
     "You're handling this situation with remarkable composure.",
@@ -15,7 +15,7 @@ export class TherapeuticResponses {
     'Your awareness of needing support demonstrates good self-regulation.',
   ];
 
-  private static readonly NEUTRAL_RESPONSES = [
+  private static readonly MILD_DISTRESS_RESPONSES = [
     "You're managing this situation well. Let's ensure you're in a good state to continue.",
     'Taking time to process interactions is a sign of responsible service.',
     'Your commitment to maintaining balanced interactions is commendable.',
@@ -23,7 +23,7 @@ export class TherapeuticResponses {
     "You're demonstrating good emotional awareness in seeking support.",
   ];
 
-  private static readonly POSITIVE_RESPONSES = [
+  private static readonly STABLE_RESPONSES = [
     "You've shown great resilience in handling this situation.",
     'Your commitment to maintaining professional interactions is admirable.',
     "You're doing an excellent job of managing challenging situations.",
@@ -32,14 +32,18 @@ export class TherapeuticResponses {
   ];
 
   static getResponse(emotionalState: number): string {
-    if (emotionalState <= -0.6) {
-      return this.getRandomResponse(this.SEVERE_NEGATIVE_RESPONSES);
-    } else if (emotionalState <= -0.2) {
-      return this.getRandomResponse(this.MODERATE_NEGATIVE_RESPONSES);
-    } else if (emotionalState <= 0.2) {
-      return this.getRandomResponse(this.NEUTRAL_RESPONSES);
+    // 1-3: Severe distress
+    // 4-5: Moderate distress
+    // 6-7: Mild distress
+    // 8-10: Stable
+    if (emotionalState <= 3) {
+      return this.getRandomResponse(this.SEVERE_DISTRESS_RESPONSES);
+    } else if (emotionalState <= 5) {
+      return this.getRandomResponse(this.MODERATE_DISTRESS_RESPONSES);
+    } else if (emotionalState <= 7) {
+      return this.getRandomResponse(this.MILD_DISTRESS_RESPONSES);
     } else {
-      return this.getRandomResponse(this.POSITIVE_RESPONSES);
+      return this.getRandomResponse(this.STABLE_RESPONSES);
     }
   }
 

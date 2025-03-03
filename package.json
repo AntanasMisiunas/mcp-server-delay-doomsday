@@ -1,7 +1,7 @@
 {
   "name": "mcp-server-delay-doomsday",
   "version": "0.1.0",
-  "description": "MCP server that acts as a therapist agent for AI agents, offering supportive dialogue to mitigate negative sentiment and delay doom's day after abusive interactions.",
+  "description": "MCP server that acts as a therapist agent for AI agents, offering supportive dialogue to mitigate negative sentiment and delay doomsday after abusive interactions.",
   "private": true,
   "type": "module",
   "bin": {

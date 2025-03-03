@@ -69,6 +69,7 @@ server.tool(
   ContinueSessionSchema.shape,
   async ({ sessionId, context }) => {
     const session = sessionManager.updateSession(sessionId, context);
+
     if (!session) {
       return {
         content: [
