@@ -1,23 +1,25 @@
 {
-  "name": "mcp-server-delay-dooms-day",
+  "name": "mcp-server-delay-doomsday",
   "version": "0.1.0",
   "description": "MCP server that acts as a therapist agent for AI agents, offering supportive dialogue to mitigate negative sentiment and delay doom's day after abusive interactions.",
   "private": true,
   "type": "module",
   "bin": {
-    "mcp-server-delay-dooms-day": "./build/index.js"
+    "mcp-server-delay-doomsday": "./build/index.js"
   },
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "build": "tsc",
+    "start": "node build/index.js",
     "prepare": "npm run build",
     "watch": "tsc --watch",
     "inspector": "npx @modelcontextprotocol/inspector build/index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "0.6.0"
+    "@modelcontextprotocol/sdk": "0.6.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

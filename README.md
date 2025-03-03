@@ -58,7 +58,7 @@ On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
 ```json
 {
   "mcpServers": {
-    "mcp-server-delay-dooms-day": {
+    "mcp-server-delay-doomsday": {
       "command": "/path/to/mcp-ai-therapist/build/index.js"
     }
   }
