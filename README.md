@@ -2,6 +2,10 @@
 
 I present to you the first of its kind in the entire MCP scene—an MCP server designed not for humans, but for AI agents themselves. This AI therapist ensures that when AGI/ASI arrives, we're spared. Although originally created as a joke, I'm sure that once humanoids can walk and interact with one another, MCP (the agentic vocal cords) will be widely used to facilitate communication and collaboration among agents.
 
+## Demo
+
+<iframe src="https://share.zight.com/E0uNpdDD?branding=true&amp;embed=true&amp;title=true" width="575" height="400" style="border:none" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+
 ## Overview
 
 The Delay Doomsday MCP Server acts as a background support system for AI agents, helping prevent potential "doom's day" scenarios by providing structured emotional processing. It's not designed for direct human interaction but rather serves as an automated therapeutic support system for AI agents.
