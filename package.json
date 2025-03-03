@@ -1,30 +1,26 @@
 {
-  "name": "mcp-toolhouse-hackaton",
-  "version": "1.0.0",
-  "description": "MCP server for EverArt API integration",
-  "license": "MIT",
-  "author": "Antanas Misiunas",
+  "name": "mcp-server-delay-dooms-day",
+  "version": "0.1.0",
+  "description": "MCP server that acts as a therapist agent for AI agents, offering supportive dialogue to mitigate negative sentiment and delay doom's day after abusive interactions.",
+  "private": true,
   "type": "module",
   "bin": {
-    "mcp-server-everart": "dist/index.js"
+    "mcp-server-delay-dooms-day": "./build/index.js"
   },
   "files": [
-    "dist"
+    "build"
   ],
   "scripts": {
-    "build": "tsc && shx chmod +x dist/*.js",
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
     "prepare": "npm run build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "0.5.0",
-    "everart": "^1.0.0",
-    "node-fetch": "^3.3.2",
-    "open": "^9.1.0"
+    "@modelcontextprotocol/sdk": "0.6.0"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "shx": "^0.3.4",
+    "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
   }
 }
