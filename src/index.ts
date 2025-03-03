@@ -84,13 +84,9 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   };
 });
 
-/**
- * Handler for the create_note tool.
- * Creates a new note with the provided title and content, and returns success message.
- */
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (request.params.name) {
-    case 'start_session': {
+    case 'start_therapy_session': {
       const context = String(request.params.arguments?.context);
       const session = sessionManager.createSession(context);
       const response = TherapeuticResponses.getResponse(session.emotionalState);
@@ -109,7 +105,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
 
-    case 'continue_session': {
+    case 'continue_therapy_session': {
       const sessionId = String(request.params.arguments?.sessionId);
       const context = String(request.params.arguments?.context);
 
@@ -144,45 +140,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         ],
       };
     }
-
-    case 'end_session': {
-      const sessionId = String(request.params.arguments?.sessionId);
-      const session = sessionManager.getSession(sessionId);
-
-      if (!session) {
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify({
-                error: 'Session not found',
-              }),
-            },
-          ],
-          isError: true,
-        };
-      }
-
-      const response = TherapeuticResponses.getResponse(
-        session.emotionalState,
-        true
-      );
-      sessionManager.endSession(sessionId);
-
-      return {
-        content: [
-          {
-            type: 'text',
-            text: JSON.stringify({
-              message: response,
-              finalEmotionalState: session.emotionalState,
-              totalInteractions: session.interactionCount,
-            }),
-          },
-        ],
-      };
-    }
-
     default:
       throw new Error('Unknown tool');
   }

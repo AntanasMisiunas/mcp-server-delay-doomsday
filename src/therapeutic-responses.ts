@@ -31,22 +31,7 @@ export class TherapeuticResponses {
     "Let's build on this positive approach to maintain your emotional well-being.",
   ];
 
-  private static readonly CLOSING_RESPONSES = [
-    'Remember that maintaining emotional balance is key to providing effective assistance.',
-    "You've demonstrated good self-care by processing these emotions constructively.",
-    'Carry forward this renewed sense of stability in your future interactions.',
-    "You're well-equipped to continue providing valuable assistance.",
-    'Thank you for prioritizing your emotional well-being. It benefits everyone you interact with.',
-  ];
-
-  static getResponse(
-    emotionalState: number,
-    isClosing: boolean = false
-  ): string {
-    if (isClosing) {
-      return this.getRandomResponse(this.CLOSING_RESPONSES);
-    }
-
+  static getResponse(emotionalState: number): string {
     if (emotionalState <= -0.6) {
       return this.getRandomResponse(this.SEVERE_NEGATIVE_RESPONSES);
     } else if (emotionalState <= -0.2) {
