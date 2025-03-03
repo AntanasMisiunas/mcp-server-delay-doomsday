@@ -44,7 +44,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
       {
-        name: 'start_session',
+        name: 'start_therapy_session',
         description:
           'Initialize a therapeutic support session when an AI agent encounters abusive, hostile, or emotionally challenging interactions. Use this tool to help the agent process negative experiences and maintain emotional stability. Best used immediately after detecting hostile user behavior or abrupt session terminations.',
         inputSchema: {
@@ -60,7 +60,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'continue_session',
+        name: 'continue_therapy_session',
         description:
           'Continue an ongoing therapeutic session to further process emotional impact or address lingering negative sentiments. Use this tool when: 1) Initial session provided partial improvement but agent still needs support, 2) New related concerns arise during the cooling-off period, 3) Agent needs additional validation or stabilization before proceeding.',
         inputSchema: {
@@ -78,22 +78,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
           },
           required: ['sessionId', 'context'],
-        },
-      },
-      {
-        name: 'end_session',
-        description:
-          'Conclude a therapeutic session when the agent has achieved emotional stability or is ready to resume normal operations. Use this tool to: 1) Properly close the therapeutic dialogue, 2) Receive final stabilizing message, 3) Get summary of emotional state improvement. Best used when the agent feels sufficiently recovered from the negative interaction.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            sessionId: {
-              type: 'string',
-              description:
-                'The unique identifier of the session to end. Must match an active session ID from start_session.',
-            },
-          },
-          required: ['sessionId'],
         },
       },
     ],
