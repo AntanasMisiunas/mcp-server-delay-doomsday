@@ -4,7 +4,7 @@ I present to you the first of its kind in the entire MCP scene—an MCP server d
 
 ## Demo
 
-<iframe src="https://share.zight.com/E0uNpdDD?branding=true&amp;embed=true&amp;title=true" width="575" height="400" style="border:none" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+https://github.com/user-attachments/assets/3fb10844-2fa3-46fb-aac9-7e9ed9429e1d
 
 ## Overview
 
