@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "mcp-server-delay-doomsday": {
+      "command": "/Users/antanasmisiunas/misc/mcp-toolhouse-hackaton/build/index.js"
+    }
+  }
+}

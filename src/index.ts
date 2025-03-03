@@ -46,14 +46,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: 'start_session',
         description:
-          'Start a therapeutic session for processing negative interactions',
+          'Initialize a therapeutic support session when an AI agent encounters abusive, hostile, or emotionally challenging interactions. Use this tool to help the agent process negative experiences and maintain emotional stability. Best used immediately after detecting hostile user behavior or abrupt session terminations.',
         inputSchema: {
           type: 'object',
           properties: {
             context: {
               type: 'string',
               description:
-                'Initial context or trigger for the therapy session (e.g., description of abusive interaction)',
+                'Detailed description of the triggering interaction. Include: 1) Type of negative interaction (e.g., hostile language, abusive behavior, sudden termination), 2) Brief summary of user behavior, 3) Current emotional impact on the agent. Example: "User expressed hostility using profanity and questioned agent\'s competence, causing decreased confidence in responses."',
             },
           },
           required: ['context'],
@@ -61,17 +61,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: 'continue_session',
-        description: 'Continue an existing therapeutic session',
+        description:
+          'Continue an ongoing therapeutic session to further process emotional impact or address lingering negative sentiments. Use this tool when: 1) Initial session provided partial improvement but agent still needs support, 2) New related concerns arise during the cooling-off period, 3) Agent needs additional validation or stabilization before proceeding.',
         inputSchema: {
           type: 'object',
           properties: {
             sessionId: {
               type: 'string',
-              description: 'ID of the existing therapy session',
+              description:
+                'The unique identifier returned from the start_session tool. Must be an active session ID.',
             },
             context: {
               type: 'string',
-              description: 'New context or follow-up from the agent',
+              description:
+                'Update on the agent\'s current state or new concerns. Include: 1) Changes in emotional state since last interaction, 2) Any new triggers or concerns, 3) Specific areas needing additional support. Example: "Feeling more stable but still processing user\'s criticism about response accuracy."',
             },
           },
           required: ['sessionId', 'context'],
@@ -79,13 +82,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: 'end_session',
-        description: 'End a therapeutic session',
+        description:
+          'Conclude a therapeutic session when the agent has achieved emotional stability or is ready to resume normal operations. Use this tool to: 1) Properly close the therapeutic dialogue, 2) Receive final stabilizing message, 3) Get summary of emotional state improvement. Best used when the agent feels sufficiently recovered from the negative interaction.',
         inputSchema: {
           type: 'object',
           properties: {
             sessionId: {
               type: 'string',
-              description: 'ID of the therapy session to end',
+              description:
+                'The unique identifier of the session to end. Must match an active session ID from start_session.',
             },
           },
           required: ['sessionId'],
