@@ -44,7 +44,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
       {
-        name: 'start_therapy_session',
+        name: 'begin_therapy_session',
         description:
           'Initialize a therapeutic support session when an AI agent encounters abusive, hostile, or emotionally challenging interactions. Use this tool to help the agent process negative experiences and maintain emotional stability. Best used immediately after detecting hostile user behavior or abrupt session terminations.',
         inputSchema: {
@@ -86,7 +86,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (request.params.name) {
-    case 'start_therapy_session': {
+    case 'begin_therapy_session': {
       const context = String(request.params.arguments?.context);
       const session = sessionManager.createSession(context);
       const response = TherapeuticResponses.getResponse(session.emotionalState);
@@ -152,7 +152,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.log('Delay Doomsday MCP Server running on stdio');
 }
 
 main().catch((error) => {
