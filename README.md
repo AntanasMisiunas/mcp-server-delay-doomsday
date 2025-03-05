@@ -4,7 +4,7 @@ I present to you the first of its kind in the entire MCP scene—an MCP server d
 
 ## Demo
 
-https://github.com/user-attachments/assets/3fb10844-2fa3-46fb-aac9-7e9ed9429e1d
+![418772824-3fb10844-2fa3-46fb-aac9-7e9ed9429e1d-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d1285f28-9a21-4f45-afff-aae5820a1632)
 
 ## Overview
 
